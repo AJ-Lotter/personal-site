@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project AJ | Approximation Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="stars"></canvas>
+    <div class="container">
+        <div class="content">
+            <div class="about-me">
+                <div class="expand-button" id="expand-about-me">[+]</div>
+                <div class="greeting">Hi, I'm Adrian </div>
+                <h5 class="headline">I'm a Software Engineer</h5>
+            </div>
+            <div class="projects">
+                <div class="project-header">
+                    <div style="grid-column: 2 / span 2; text-align: center;">Projects</div>
+                    <div style="text-align: right;">[+]</div>
+                </div>
+                <div class="project-display">
+                    <div><</div>
+                    <div class="project-card">
+                        <img class="project-img" src="./images/project-img.avif" alt="">
+                        <div class="project-title">Low-Cost Phasor Measurement Unit</div>
+                    </div>
+                    <div class="">></div>
+                </div>
+                <!-- <div>o o o o o o o</div> -->
+            </div>
+            <div class="social">
+                <div>
+                    <img src="./images/github-brands-solid.png" alt="">
+                    <span>Github</span>
+                </div>
+                <div>
+                    <img src="./images/linkedin-in-brands-solid.png" alt="">
+                    <span>LinkedIn</span>
+                </div>
+            </div>
+            <div class="cv">
+                <span>
+                    Download CV
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="rgb(255, 255, 255)" d="M192 64C156.7 64 128 92.7 128 128L128 512C128 547.3 156.7 576 192 576L448 576C483.3 576 512 547.3 512 512L512 234.5C512 217.5 505.3 201.2 493.3 189.2L386.7 82.7C374.7 70.7 358.5 64 341.5 64L192 64zM453.5 240L360 240C346.7 240 336 229.3 336 216L336 122.5L453.5 240z"/></svg>
+            </div>
+            <div class="tech-stack">
+                <div class="card tech-heading">
+                    <h5>
+                        My Tech Stack
+                    </h5>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <img src="./images/css-brands-solid.png" alt="">
+                    </div>
+                    <h6 class="card-text">CSS</h6>
+                </div>                
+                <div class="card">
+                    <div class="card-icon">
+                        <img src="./images/css-brands-solid.png" alt="">
+                    </div>
+                    <h6 class="card-text">CSS</h6>
+                </div>                
+                <div class="card">
+                    <div class="card-icon">
+                        <img src="./images/css-brands-solid.png" alt="">
+                    </div>
+                    <h6 class="card-text">CSS</h6>
+                </div>                    <div class="card">
+                    <div class="card-icon">
+                        <img src="./images/css-brands-solid.png" alt="">
+                    </div>
+                    <h6 class="card-text">CSS</h6>
+                </div>                    <div class="card">
+                    <div class="card-icon">
+                        <img src="./images/css-brands-solid.png" alt="">
+                    </div>
+                    <h6 class="card-text">CSS</h6>
+                </div>                
+               
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        const canvas = document.getElementById("stars");
+
+        const ctx = canvas.getContext("2d");
+
+        let stars = [];
+
+        let animationFrame;
+
+
+        function resizeCanvas() {
+
+            canvas.width = window.innerWidth;
+
+            canvas.height = window.innerHeight;
+
+            stars = [];
+
+            const count = Math.floor(
+                (canvas.width * canvas.height) / 1800
+            );
+
+            for (let i = 0; i < count; i++) {
+
+                stars.push({
+
+                    x: Math.random() * canvas.width,
+
+                    y: Math.random() * canvas.height,
+
+                    radius: Math.random() * 1.5 + 0.3,
+
+                    alpha: Math.random() * 0.6 + 0.15,
+
+                    speed: Math.random() * 0.15 + 0.02
+
+                });
+
+            }
+
+        }
+
+
+        function drawStars() {
+
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            stars.forEach(star => {
+
+                ctx.beginPath();
+
+                ctx.arc(
+                    star.x,
+                    star.y,
+                    star.radius,
+                    0,
+                    Math.PI * 2
+                );
+
+                ctx.fillStyle =
+                    `rgba(200, 200, 200, ${star.alpha})`;
+
+                ctx.fill();
+
+                star.y += star.speed;
+
+                if (star.y > canvas.height) {
+
+                    star.y = 0;
+
+                    star.x = Math.random() * canvas.width;
+
+                }
+
+            });
+
+            animationFrame = requestAnimationFrame(drawStars);
+
+        }
+
+
+        resizeCanvas();
+
+        drawStars();
+
+
+        window.addEventListener("resize", resizeCanvas);
+
+
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
